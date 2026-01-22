@@ -1,8 +1,8 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/SBjfhcv-)
-# [NOMBRE DEL PROYECTO]
+# [Proyecto 2 Bases de datos]
 ### Nombre y carné de los integrantes: 
-
-
-### Estado del proyecto:
+-Gabriel Elias Garro Cruz - 2024227539
+-Sofia Elena Barrantes Miranda - 2024247378
+### Estado del proyecto:-En Proceso-
 ### Enlace del video:
 Recordar que el video debe ser público para ser visto por el profesor
