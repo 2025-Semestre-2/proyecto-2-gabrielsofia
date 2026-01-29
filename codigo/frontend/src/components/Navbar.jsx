@@ -1,88 +1,145 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function Navbar() {
   const [entrada, setEntrada] = useState("");
   const [salida, setSalida] = useState("");
   const [personas, setPersonas] = useState(1);
+  const [visible, setVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        setVisible(false);
+      } else {
+        setVisible(true);
+      }
+
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [lastScrollY]);
 
   return (
-    <nav className="fixed top-0 w-full bg-[#F7F3F0] border-b border-gray-200 z-50">
+    <nav
+      className={`fixed top-0 left-0 w-full z-50 transition-transform duration-300
+      ${visible ? "translate-y-0" : "-translate-y-full"}`}
+    >
+      {/* CONTENEDOR CENTRADO */}
+      <div className="flex justify-center pt-6 px-6">
+        <div className="w-full max-w-5xl bg-white rounded-2xl shadow-lg border border-gray-200">
 
-      {/* BARRA SUPERIOR */}
-      <div className="max-w-7xl mx-auto px-6 py-2 flex items-center justify-between text-sm">
+          {/* FILA SUPERIOR */}
+          <div className="px-6 py-4 flex items-center justify-between">
 
-        {/* LOGO */}
-        <h1 className="font-semibold text-[#99BFA1]">
-          LimonT&H
-        </h1>
+            {/* LOGO */}
+            <h1 className="font-bold text-2xl text-[#99BFA1]">
+              LimonT&H
+            </h1>
 
-        {/* LOGIN ARRIBA A LA IZQUIERDA */}
-        <button className="border rounded-full px-4 py-1 bg-white hover:shadow transition">
-          Iniciar sesión
-        </button>
-      </div>
+            {/* BOTONES CENTRALES */}
+            <div className="flex justify-between w-[650px]">
+              <button
+                className="bg-[#E69C9C] text-white text-lg font-semibold
+                px-10 py-5 scale-120 rounded-full hover:bg-[#dc8f8f]
+                transition shadow-md"
+              >
+                Actividades
+              </button>
 
-      {/* BUSCADOR */}
-      <div className="max-w-7xl mx-auto px-6 pb-4 flex justify-center">
-        <div className="flex w-full md:w-[70%] bg-white rounded-full shadow-sm overflow-hidden border text-sm">
+              <button
+                className="bg-[#E69C9C] text-white text-lg font-semibold
+                px-10 py-5 scale-120 rounded-full hover:bg-[#dc8f8f]
+                transition shadow-md"
+              >
+                Alquileres disponibles
+              </button>
 
-          {/* UBICACIÓN */}
-          <div className="px-4 py-2 flex flex-col border-r">
-            <span className="text-xs font-semibold">Ubicación</span>
-            <input
-              type="text"
-              placeholder="¿A dónde vas?"
-              className="outline-none"
-            />
+              <button
+                className="bg-[#E69C9C] text-white text-lg font-semibold
+                px-10 py-5 scale-120 rounded-full hover:bg-[#dc8f8f]
+                transition shadow-md"
+              >
+                Brinda tus servicios
+              </button>
+            </div>
+
+            {/* LOGIN */}
+            <button className="border border-gray-300 rounded-full px-6 py-3 text-base hover:shadow transition">
+              Iniciar sesión
+            </button>
           </div>
 
-          {/* ENTRADA */}
-          <div className="px-4 py-2 flex flex-col border-r">
-            <span className="text-xs font-semibold">Entrada</span>
-            <input
-              type="date"
-              value={entrada}
-              onChange={(e) => {
-                setEntrada(e.target.value);
-                if (salida && e.target.value >= salida) setSalida("");
-              }}
-              className="outline-none"
-            />
+          {/* BUSCADOR */}
+          <div className="px-6 pb-5">
+            <div className="flex bg-white rounded-xl border overflow-hidden text-sm">
+
+              <div className="flex-1 px-4 py-3 border-r">
+                <div className="text-[11px] font-semibold text-gray-600 mb-1">
+                  DESTINO
+                </div>
+                <input
+                  placeholder="¿A dónde?"
+                  className="outline-none w-full bg-transparent text-sm"
+                />
+              </div>
+
+              <div className="flex-1 px-4 py-3 border-r">
+                <div className="text-[11px] font-semibold text-gray-600 mb-1">
+                  LLEGADA
+                </div>
+                <input
+                  type="date"
+                  value={entrada}
+                  onChange={(e) => setEntrada(e.target.value)}
+                  className="outline-none w-full bg-transparent text-sm"
+                />
+              </div>
+
+              <div className="flex-1 px-4 py-3 border-r">
+                <div className="text-[11px] font-semibold text-gray-600 mb-1">
+                  SALIDA
+                </div>
+                <input
+                  type="date"
+                  min={entrada}
+                  value={salida}
+                  onChange={(e) => setSalida(e.target.value)}
+                  className="outline-none w-full bg-transparent text-sm"
+                />
+              </div>
+
+              <div className="flex-1 px-4 py-3 border-r">
+                <div className="text-[11px] font-semibold text-gray-600 mb-1">
+                  PERSONAS
+                </div>
+                <div className="flex items-center justify-between">
+                  <button
+                    onClick={() => setPersonas(p => Math.max(1, p - 1))}
+                    className="w-6 h-6 rounded-full border flex items-center justify-center hover:bg-gray-100 text-sm"
+                  >
+                    -
+                  </button>
+                  <span className="text-sm">{personas}</span>
+                  <button
+                    onClick={() => setPersonas(p => Math.min(30, p + 1))}
+                    className="w-6 h-6 rounded-full border flex items-center justify-center hover:bg-gray-100 text-sm"
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+
+              <button className="bg-[#99BFA1] text-white px-6 text-sm font-semibold hover:bg-[#8bb394] transition rounded-r-xl">
+                Buscar
+              </button>
+            </div>
           </div>
 
-          {/* SALIDA */}
-          <div className="px-4 py-2 flex flex-col border-r">
-            <span className="text-xs font-semibold">Salida</span>
-            <input
-              type="date"
-              min={entrada}
-              value={salida}
-              onChange={(e) => setSalida(e.target.value)}
-              className="outline-none"
-              disabled={!entrada}
-            />
-          </div>
-
-          {/* PERSONAS */}
-          <div className="px-4 py-2 flex flex-col border-r">
-            <span className="text-xs font-semibold">Personas</span>
-            <select
-              value={personas}
-              onChange={(e) => setPersonas(e.target.value)}
-              className="outline-none bg-transparent"
-            >
-              {Array.from({ length: 30 }, (_, i) => i + 1).map((num) => (
-                <option key={num} value={num}>
-                  {num}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          {/* BOTÓN */}
-          <button className="bg-[#99BFA1] text-white px-6 font-semibold hover:bg-[#8bb394] transition">
-            Buscar
-          </button>
         </div>
       </div>
     </nav>

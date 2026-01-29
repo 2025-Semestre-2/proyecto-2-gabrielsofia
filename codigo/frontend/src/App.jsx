@@ -9,46 +9,46 @@ import ProtectedRoute from "./routes/ProtectedRoute";
 
 function App() {
   return (
-    <>
-      {/* RUTAS DONDE NO QUEREMOS EL NAVBAR */}
-      <Routes>
-        {/* LOGIN - sin Navbar */}
-        <Route path="/login" element={<Login />} />
-        
-        {/* OTRAS RUTAS - con Navbar */}
-        <Route path="/*" element={
+    <Routes>
+
+      {/* LOGIN SIN NAVBAR */}
+      <Route path="/login" element={<Login />} />
+
+      {/* TODAS LAS DEMÁS RUTAS */}
+      <Route
+        path="/*"
+        element={
           <>
             <Navbar />
-            <div className="pt-28">
-              <Routes>
-                {/* HOME */}
-                <Route path="/" element={<HomePage />} />
 
-                {/* DASHBOARD */}
-                <Route
-                  path="/dashboard"
-                  element={
-                    <ProtectedRoute>
-                      <Dashboard />
-                    </ProtectedRoute>
-                  }
-                />
+            {/* ESPACIADOR DEL NAVBAR */}
+            <div className="h-[180px]" />
 
-                {/* REPORTES */}
-                <Route
-                  path="/reportes"
-                  element={
-                    <ProtectedRoute role="ADMIN">
-                      <ReportesView />
-                    </ProtectedRoute>
-                  }
-                />
-              </Routes>
-            </div>
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+
+              <Route
+                path="/dashboard"
+                element={
+                  <ProtectedRoute>
+                    <Dashboard />
+                  </ProtectedRoute>
+                }
+              />
+
+              <Route
+                path="/reportes"
+                element={
+                  <ProtectedRoute role="ADMIN">
+                    <ReportesView />
+                  </ProtectedRoute>
+                }
+              />
+            </Routes>
           </>
-        } />
-      </Routes>
-    </>
+        }
+      />
+    </Routes>
   );
 }
 
