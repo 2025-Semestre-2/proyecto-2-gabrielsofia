@@ -1,116 +1,172 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
+import { X } from "lucide-react";
 
-export default function LoginModal({ onClose }) {
+export default function LoginModal({ isOpen, onClose }) {
+  const [isLogin, setIsLogin] = useState(true);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
+  const [username, setUsername] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
+  // Bloquear scroll del fondo
   useEffect(() => {
-    // Bloquear scroll
-    document.body.style.overflow = "hidden";
-    document.body.style.height = "100vh";
-    
-    // Prevenir que se cierre con ESC
-    const handleEsc = (e) => {
-      if (e.key === "Escape") onClose();
-    };
-    
-    window.addEventListener("keydown", handleEsc);
-    
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    }
     return () => {
       document.body.style.overflow = "auto";
-      document.body.style.height = "auto";
-      window.removeEventListener("keydown", handleEsc);
     };
-  }, [onClose]);
+  }, [isOpen]);
+
+  if (!isOpen) return null;
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (isLogin) {
+      console.log("Login:", { email, password });
+    } else {
+      if (password !== confirmPassword) {
+        alert("Las contraseñas no coinciden");
+        return;
+      }
+      console.log("Registro:", { name, username, email, password });
+    }
+
+    onClose();
+  };
 
   return (
-    <>
-      {/* FONDO BLANCO QUE CUBRE ABSOLUTAMENTE TODO */}
-      <div className="fixed inset-0 z-[9998] bg-white" />
-      
-      {/* MODAL SOBRE EL FONDO BLANCO */}
-      <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4">
-        
-        {/* MODAL */}
-        <div className="relative bg-white rounded-2xl w-full max-w-2xl shadow-2xl overflow-hidden border border-gray-300">
+    /* OVERLAY */
+    <div className="fixed inset-0 z-[9999] bg-black/40 backdrop-blur-sm">
 
-          {/* CERRAR */}
-          <button
-            onClick={onClose}
-            className="absolute top-6 right-6 text-gray-500 hover:text-black text-2xl z-10 bg-white rounded-full w-10 h-10 flex items-center justify-center shadow-md"
-          >
-            ✕
-          </button>
+      {/* MODAL */}
+      <div
+        className="fixed top-1/2 left-1/2
+                   -translate-x-1/2 -translate-y-1/2
+                   bg-white rounded-2xl shadow-2xl
+                   w-[420px] max-w-[90vw]
+                   border border-gray-200"
+      >
+        {/* BOTÓN CERRAR */}
+        <button
+          onClick={onClose}
+          className="absolute -top-3 -right-3 bg-white rounded-full p-2 shadow-lg border hover:bg-gray-50 transition"
+        >
+          <X size={20} />
+        </button>
 
-          {/* CONTENIDO */}
-          <div className="flex flex-col lg:flex-row min-h-[600px]">
+        {/* LOGO */}
+        <div className="pt-10 pb-8 text-center">
+          <h1 className="font-bold text-3xl text-[#99BFA1]">LimonT&H</h1>
+          <p className="text-gray-500 text-sm mt-1">
+            Turismo y Hospedaje
+          </p>
+        </div>
 
-            {/* IZQUIERDA */}
-            <div className="lg:w-2/5 bg-gradient-to-br from-[#E69C9C] to-[#dc8f8f] p-8 flex flex-col justify-center items-center text-white">
-              <div className="text-center">
-                <h3 className="text-3xl font-bold mb-4">¡Bienvenido!</h3>
-                <p className="text-lg opacity-90">
-                  Accede a tu cuenta para gestionar tus reservas y disfrutar de beneficios exclusivos.
-                </p>
-                <div className="mt-8 text-6xl">🏝️</div>
-              </div>
-            </div>
+        {/* CONTENIDO */}
+        <div className="px-8 pb-10">
+          <h2 className="text-xl font-bold text-center mb-2">
+            {isLogin ? "Inicia sesión en tu cuenta" : "Crea una nueva cuenta"}
+          </h2>
 
-            {/* DERECHA */}
-            <div className="lg:w-3/5 p-10 flex flex-col justify-center">
+          <p className="text-sm text-gray-500 text-center mb-8">
+            {isLogin
+              ? "Ingresa tus credenciales para continuar"
+              : "Completa el formulario para registrarte"}
+          </p>
 
-              <div className="mb-8">
-                <h2 className="text-3xl font-bold text-gray-900 mb-2">Iniciar sesión</h2>
-                <p className="text-gray-600">Ingresa tus credenciales para acceder a tu cuenta</p>
-              </div>
-
-              <form className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-4">
+            {!isLogin && (
+              <>
+                {/* Nombre completo */}
                 <div>
                   <input
                     type="text"
-                    placeholder="Usuario o correo electrónico"
-                    className="w-full border border-gray-300 rounded-xl px-5 py-4 text-lg focus:outline-none focus:ring-2 focus:ring-[#E69C9C] focus:border-transparent"
-                    autoFocus
+                    placeholder="Nombre completo"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    className="w-full px-4 py-3 border rounded-lg outline-none focus:ring-2 focus:ring-[#99BFA1]"
+                    required
                   />
                 </div>
 
+                {/* Username */}
                 <div>
                   <input
-                    type="password"
-                    placeholder="Contraseña"
-                    className="w-full border border-gray-300 rounded-xl px-5 py-4 text-lg focus:outline-none focus:ring-2 focus:ring-[#E69C9C] focus:border-transparent"
+                    type="text"
+                    placeholder="Nombre de usuario"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    className="w-full px-4 py-3 border rounded-lg outline-none focus:ring-2 focus:ring-[#99BFA1]"
+                    required
                   />
                 </div>
+              </>
+            )}
 
-                <div className="flex justify-between items-center">
-                  <label className="flex items-center gap-2 cursor-pointer">
-                    <input type="checkbox" className="w-4 h-4 cursor-pointer" />
-                    <span className="text-gray-700">Recordar sesión</span>
-                  </label>
-                  <button type="button" className="text-[#E69C9C] hover:underline">
-                    ¿Olvidaste tu contraseña?
-                  </button>
-                </div>
-
-                <button 
-                  type="submit"
-                  className="w-full bg-[#E69C9C] hover:bg-[#dc8f8f] text-white text-lg font-semibold py-4 rounded-xl transition shadow-md"
-                >
-                  Continuar
-                </button>
-              </form>
-
-              <div className="mt-8 pt-6 border-t text-center">
-                <p className="text-gray-600">
-                  ¿No tienes cuenta?{" "}
-                  <button type="button" className="text-[#E69C9C] font-semibold hover:underline">
-                    Regístrate aquí
-                  </button>
-                </p>
-              </div>
-
+            {/* Email - siempre visible */}
+            <div>
+              <input
+                type="email"
+                placeholder="Correo electrónico"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full px-4 py-3 border rounded-lg outline-none focus:ring-2 focus:ring-[#99BFA1]"
+                required
+              />
             </div>
+
+            {/* Password */}
+            <div>
+              <input
+                type="password"
+                placeholder="Contraseña"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full px-4 py-3 border rounded-lg outline-none focus:ring-2 focus:ring-[#99BFA1]"
+                required
+              />
+            </div>
+
+            {/* Confirmar Password - solo en registro */}
+            {!isLogin && (
+              <div>
+                <input
+                  type="password"
+                  placeholder="Confirmar contraseña"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  className="w-full px-4 py-3 border rounded-lg outline-none focus:ring-2 focus:ring-[#99BFA1]"
+                  required
+                />
+              </div>
+            )}
+
+            <button
+              type="submit"
+              className="w-full bg-[#99BFA1] text-white py-3 rounded-lg font-semibold hover:bg-[#8bb394] transition shadow mt-2"
+            >
+              {isLogin ? "Iniciar sesión" : "Crear cuenta"}
+            </button>
+          </form>
+
+          {/* SWITCH LOGIN / REGISTRO */}
+          <div className="text-center pt-8 mt-8 border-t border-gray-200">
+            <p className="text-sm text-gray-600">
+              {isLogin ? "¿No tienes cuenta?" : "¿Ya tienes cuenta?"}
+              <button
+                type="button"
+                onClick={() => setIsLogin(!isLogin)}
+                className="ml-2 font-semibold text-[#99BFA1] hover:underline"
+              >
+                {isLogin ? "Regístrate" : "Inicia sesión"}
+              </button>
+            </p>
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }

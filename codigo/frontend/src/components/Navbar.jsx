@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
-import LoginModal from "./LoginModal";
 
-export default function Navbar({ onOpenLogin }) {  // Recibimos el prop
+export default function Navbar({ onOpenLogin }) {  
   const [entrada, setEntrada] = useState("");
   const [salida, setSalida] = useState("");
   const [personas, setPersonas] = useState(1);
@@ -81,7 +80,7 @@ export default function Navbar({ onOpenLogin }) {  // Recibimos el prop
 
               {/* LOGIN */}
               <button
-                onClick={handleLoginClick}  // Usamos la nueva función
+                onClick={handleLoginClick}  
                 className="bg-[#99BFA1] rounded-full px-6 py-3 text-base hover:shadow transition whitespace-nowrap"
               >
                 Iniciar sesión
@@ -164,9 +163,6 @@ export default function Navbar({ onOpenLogin }) {  // Recibimos el prop
           </div>
         </div>
       </nav>
-
-      {/* MODAL LOGIN */}
-      {showLogin && <LoginModal onClose={handleCloseLogin} />}
     </>
   );
 }
