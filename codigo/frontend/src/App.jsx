@@ -1,54 +1,40 @@
 import { Routes, Route } from "react-router-dom";
-
 import Navbar from "./components/Navbar";
 import HomePage from "./pages/Home";
-import Login from "./pages/auth/Login";
 import Dashboard from "./pages/dashboard/Dashboard";
 import ReportesView from "./pages/reportes/ReportesView";
 import ProtectedRoute from "./routes/ProtectedRoute";
 
 function App() {
   return (
-    <Routes>
+    <>
+      <Navbar />
 
-      {/* LOGIN SIN NAVBAR */}
-      <Route path="/login" element={<Login />} />
+      {/* Espacio del navbar */}
+      <div className="h-[180px]" />
 
-      {/* TODAS LAS DEMÁS RUTAS */}
-      <Route
-        path="/*"
-        element={
-          <>
-            <Navbar />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
 
-            {/* ESPACIADOR DEL NAVBAR */}
-            <div className="h-[180px]" />
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        />
 
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-
-              <Route
-                path="/dashboard"
-                element={
-                  <ProtectedRoute>
-                    <Dashboard />
-                  </ProtectedRoute>
-                }
-              />
-
-              <Route
-                path="/reportes"
-                element={
-                  <ProtectedRoute role="ADMIN">
-                    <ReportesView />
-                  </ProtectedRoute>
-                }
-              />
-            </Routes>
-          </>
-        }
-      />
-    </Routes>
+        <Route
+          path="/reportes"
+          element={
+            <ProtectedRoute role="ADMIN">
+              <ReportesView />
+            </ProtectedRoute>
+          }
+        />
+      </Routes>
+    </>
   );
 }
 

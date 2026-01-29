@@ -1,6 +1,6 @@
 export default function HomePage() {
   return (
-    <div className="min-h-screen pt-40">
+    <div className="min-h-screen">
       <FeaturedSection />
       <IdeasSection />
       <ExperiencesSection />
