@@ -9,7 +9,6 @@ export default function LoginModal({ isOpen, onClose }) {
   const [username, setUsername] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  // Bloquear scroll del fondo
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";

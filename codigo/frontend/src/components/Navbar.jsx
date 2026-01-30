@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-export default function Navbar({ onOpenLogin }) {  
+export default function Navbar({ onOpenLogin, onOpenServiceType }) {  
   const [entrada, setEntrada] = useState("");
   const [salida, setSalida] = useState("");
   const [personas, setPersonas] = useState(1);
@@ -73,9 +73,12 @@ export default function Navbar({ onOpenLogin }) {
                   Alquileres disponibles
                 </button>
 
-                <button className="bg-[#E69C9C] text-white text-lg font-semibold px-10 py-4 rounded-full hover:bg-[#dc8f8f] transition shadow-md">
-                  Brinda tus servicios
-                </button>
+                <button
+  onClick={onOpenServiceType}
+  className="bg-[#E69C9C] text-white text-lg font-semibold px-10 py-4 rounded-full hover:bg-[#dc8f8f] transition shadow-md"
+>
+  Brinda tus servicios
+</button>
               </div>
 
               {/* LOGIN */}
