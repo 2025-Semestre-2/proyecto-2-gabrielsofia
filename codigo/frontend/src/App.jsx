@@ -7,11 +7,11 @@ import ServiceTypeModal from "./components/ServiceTypeModal";
 
 import HomePage from "./pages/Home";
 import StartHosting from "./pages/StartHosting";
-import Dashboard from "./pages/dashboard/Dashboard";
-import ReportesView from "./pages/reportes/ReportesView";
 import SelectPropertyType from "./pages/SelectPropertyType";
+import SelectLocation from "./pages/SelectLocation";
+import SelectBasicInfo from "./pages/SelectBasicInfo";
+import SelectListingDetails from "./pages/SelectListingDetails";
 
-import ProtectedRoute from "./routes/ProtectedRoute";
 
 function App() {
   const navigate = useNavigate();
@@ -19,82 +19,59 @@ function App() {
 
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [isServiceTypeOpen, setIsServiceTypeOpen] = useState(false);
-  const [serviceType, setServiceType] = useState(null);
 
-  const hideNavbarRoutes = [
+const hideNavbarRoutes = [
   "/empezar",
   "/registro/hospedaje/tipo",
+  "/registro/hospedaje/ubicacion",
+  "/registro/hospedaje/datos",
+  "/registro/hospedaje/detalles", 
 ];
+
   const hideNavbar = hideNavbarRoutes.includes(location.pathname);
 
   return (
     <>
-      {/* NAVBAR */}
       {!hideNavbar && !isLoginModalOpen && !isServiceTypeOpen && (
         <Navbar
           onOpenLogin={() => setIsLoginModalOpen(true)}
-          onOpenServiceType={() => setIsServiceTypeOpen(true)}
-        />
+          onOpenServiceType={() => setIsServiceTypeOpen(true)}/>
       )}
-
-      {/* MODAL: TIPO DE SERVICIO */}
       <ServiceTypeModal
         isOpen={isServiceTypeOpen}
         onClose={() => setIsServiceTypeOpen(false)}
-        onSelect={(type) => {
-          setServiceType(type);
+        onSelect={() => {
           setIsServiceTypeOpen(false);
           setIsLoginModalOpen(true);
         }}
       />
-
-      {/* MODAL: LOGIN */}
       <LoginModal
         isOpen={isLoginModalOpen}
-        onClose={() => {
-          setIsLoginModalOpen(false);
-
-          if (serviceType === "hospedaje") {
-            navigate("/empezar");
-          }
-
-          if (serviceType === "actividades") {
-            navigate("/empezar"); 
-          }
-
-          setServiceType(null);
-        }}
+        onClose={() => {setIsLoginModalOpen(false);
+        navigate("/"); }}
       />
-
-      {/* CONTENIDO */}
       {!isLoginModalOpen && !isServiceTypeOpen && (
         <>
-          {/* Espacio para navbar */}
           {!hideNavbar && <div className="h-[180px]" />}
 
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/empezar" element={<StartHosting />} />
             <Route
-  path="/registro/hospedaje/tipo"
-  element={<SelectPropertyType />}
-/>
-            <Route
-              path="/dashboard"
-              element={
-                <ProtectedRoute>
-                  <Dashboard />
-                </ProtectedRoute>
-              }
+              path="/registro/hospedaje/tipo"
+              element={<SelectPropertyType />}
             />
-
             <Route
-              path="/reportes"
-              element={
-                <ProtectedRoute role="ADMIN">
-                  <ReportesView />
-                </ProtectedRoute>
-              }
+              path="/registro/hospedaje/ubicacion"
+              element={<SelectLocation />}
+            />
+            <Route
+              path="/registro/hospedaje/datos"
+              element={<SelectBasicInfo />}
+            />
+            <Route
+              path="/registro/hospedaje/detalles"
+              element={<SelectListingDetails />}
             />
           </Routes>
         </>
