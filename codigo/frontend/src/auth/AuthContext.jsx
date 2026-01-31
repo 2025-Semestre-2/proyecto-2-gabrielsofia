@@ -1,19 +1,11 @@
 import { createContext, useContext, useState } from "react";
 
-const AuthContext = createContext();
+const AuthContext = createContext(null);
 
-export const AuthProvider = ({ children }) => {
+export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
 
-  const login = (email, password) => {
-    // SIMULACIÓN (esto luego viene del backend)
-    if (email === "admin@hotel.com") {
-      setUser({ email, role: "ADMIN" });
-    } else {
-      setUser({ email, role: "USUARIO" });
-    }
-  };
-
+  const login = (userData) => setUser(userData);
   const logout = () => setUser(null);
 
   return (
@@ -21,6 +13,8 @@ export const AuthProvider = ({ children }) => {
       {children}
     </AuthContext.Provider>
   );
-};
+}
 
-export const useAuth = () => useContext(AuthContext);
+export function useAuth() {
+  return useContext(AuthContext);
+}

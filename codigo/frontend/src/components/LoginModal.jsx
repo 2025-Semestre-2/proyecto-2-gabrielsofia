@@ -23,14 +23,9 @@ export default function LoginModal({ isOpen, onClose }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (isLogin) {
-      console.log("Login:", { email, password });
-    } else {
-      if (password !== confirmPassword) {
-        alert("Las contraseñas no coinciden");
-        return;
-      }
-      console.log("Registro:", { name, username, email, password });
+    if (!isLogin && password !== confirmPassword) {
+      alert("Las contraseñas no coinciden");
+      return;
     }
 
     onClose();
@@ -46,12 +41,13 @@ export default function LoginModal({ isOpen, onClose }) {
                    -translate-x-1/2 -translate-y-1/2
                    bg-white rounded-2xl shadow-2xl
                    w-[420px] max-w-[90vw]
-                   border border-gray-200"
+                   border border-gray-200
+                   overflow-hidden"
       >
         {/* BOTÓN CERRAR */}
         <button
           onClick={onClose}
-          className="absolute -top-3 -right-3 bg-white rounded-full p-2 shadow-lg border hover:bg-gray-50 transition"
+          className="absolute top-4 right-4 bg-white rounded-full p-2 shadow-md border hover:bg-gray-50 transition"
         >
           <X size={20} />
         </button>
@@ -79,68 +75,53 @@ export default function LoginModal({ isOpen, onClose }) {
           <form onSubmit={handleSubmit} className="space-y-4">
             {!isLogin && (
               <>
-                {/* Nombre completo */}
-                <div>
-                  <input
-                    type="text"
-                    placeholder="Nombre completo"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    className="w-full px-4 py-3 border rounded-lg outline-none focus:ring-2 focus:ring-[#99BFA1]"
-                    required
-                  />
-                </div>
+                <input
+                  type="text"
+                  placeholder="Nombre completo"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  className="w-full box-border px-4 py-3 border rounded-lg outline-none focus:ring-2 focus:ring-[#99BFA1]"
+                  required
+                />
 
-                {/* Username */}
-                <div>
-                  <input
-                    type="text"
-                    placeholder="Nombre de usuario"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                    className="w-full px-4 py-3 border rounded-lg outline-none focus:ring-2 focus:ring-[#99BFA1]"
-                    required
-                  />
-                </div>
+                <input
+                  type="text"
+                  placeholder="Nombre de usuario"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                  className="w-full box-border px-4 py-3 border rounded-lg outline-none focus:ring-2 focus:ring-[#99BFA1]"
+                  required
+                />
               </>
             )}
 
-            {/* Email - siempre visible */}
-            <div>
-              <input
-                type="email"
-                placeholder="Correo electrónico"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="w-full px-4 py-3 border rounded-lg outline-none focus:ring-2 focus:ring-[#99BFA1]"
-                required
-              />
-            </div>
+            <input
+              type="email"
+              placeholder="Correo electrónico"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="w-full box-border px-4 py-3 border rounded-lg outline-none focus:ring-2 focus:ring-[#99BFA1]"
+              required
+            />
 
-            {/* Password */}
-            <div>
+            <input
+              type="password"
+              placeholder="Contraseña"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="w-full box-border px-4 py-3 border rounded-lg outline-none focus:ring-2 focus:ring-[#99BFA1]"
+              required
+            />
+
+            {!isLogin && (
               <input
                 type="password"
-                placeholder="Contraseña"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="w-full px-4 py-3 border rounded-lg outline-none focus:ring-2 focus:ring-[#99BFA1]"
+                placeholder="Confirmar contraseña"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                className="w-full box-border px-4 py-3 border rounded-lg outline-none focus:ring-2 focus:ring-[#99BFA1]"
                 required
               />
-            </div>
-
-            {/* Confirmar Password - solo en registro */}
-            {!isLogin && (
-              <div>
-                <input
-                  type="password"
-                  placeholder="Confirmar contraseña"
-                  value={confirmPassword}
-                  onChange={(e) => setConfirmPassword(e.target.value)}
-                  className="w-full px-4 py-3 border rounded-lg outline-none focus:ring-2 focus:ring-[#99BFA1]"
-                  required
-                />
-              </div>
             )}
 
             <button
@@ -151,7 +132,7 @@ export default function LoginModal({ isOpen, onClose }) {
             </button>
           </form>
 
-          {/* SWITCH LOGIN / REGISTRO */}
+          {/* SWITCH */}
           <div className="text-center pt-8 mt-8 border-t border-gray-200">
             <p className="text-sm text-gray-600">
               {isLogin ? "¿No tienes cuenta?" : "¿Ya tienes cuenta?"}
