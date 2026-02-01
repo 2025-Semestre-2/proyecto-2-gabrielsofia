@@ -63,8 +63,6 @@
             <FaTimes className="text-xl text-gray-600" />
           </button>
         </header>
-
-        {/* CONTENIDO */}
         <main className="flex-1 flex justify-center px-10 py-14">
           <div className="w-full max-w-6xl">
             {/* Sección 1: Tipo de propiedad */}
@@ -85,12 +83,12 @@
                       type="button"
                       onClick={() => setSelectedProperty(option.label)}
                       className={`
-                        h-60 rounded-xl border-2 transition-all duration-300
-                        flex flex-col items-center justify-center gap-3
+                        h-60 rounded-xl border transition-all duration-300 flex flex-col items-center justify-center gap-3
                         ${isSelected
-                          ? "border-[#99BFA1] bg-[#99BFA1]/10 shadow-lg scale-[1.02]"
-                          : "border-gray-200 hover:border-[#99BFA1] hover:shadow-md"}
+                        ? "border-[#99BFA1] bg-[#99BFA1]/10 shadow-md scale-[1.02]"
+                        : "border-gray-200 hover:border-[#99BFA1] hover:shadow-sm"}
                       `}
+
                     >
                       <div
                         className={`text-4xl transition-colors ${
@@ -99,7 +97,7 @@
                       >
                         {option.icon}
                       </div>
-                      <span className="text-lg font-semibold text-center">
+                      <span className="text-lg font-normal text-center">
                         {option.label}
                       </span>
                     </button>
@@ -169,15 +167,13 @@
 
               <button
                 disabled={!selectedProperty || !stayType}
-                onClick={() => navigate("/registro/hospedaje/ubicacion")}
-                className={`
-                  px-14 py-5 rounded-2xl font-bold text-2xl transition-all duration-300
-                  ${selectedProperty && stayType
-                    ? "bg-gradient-to-r from-[#99BFA1] to-[#8BB593] text-white hover:shadow-xl hover:scale-[1.02]"
-                    : "bg-gray-200 text-gray-400 cursor-not-allowed"
-                  }
-                `}
-              >
+                onClick={() => navigate("/registro/hospedaje/ubicacion", {state: { stayType },}) }
+                className={` px-14 py-5 rounded-2xl font-bold text-2xl transition-all duration-300
+                ${
+                selectedProperty && stayType
+                 ? "bg-gradient-to-r from-[#99BFA1] to-[#8BB593] text-white hover:shadow-xl hover:scale-[1.02]"
+                 : "bg-gray-200 text-gray-400 cursor-not-allowed"
+                } `}>
                 Continuar
               </button>
             </div>

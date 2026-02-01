@@ -1,7 +1,10 @@
 import { useState, useEffect } from "react";
 import { X } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 export default function LoginModal({ isOpen, onClose }) {
+  const navigate = useNavigate();
+
   const [isLogin, setIsLogin] = useState(true);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -20,6 +23,11 @@ export default function LoginModal({ isOpen, onClose }) {
 
   if (!isOpen) return null;
 
+  const handleCloseToHome = () => {
+    onClose();
+    navigate("/");
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -34,19 +42,18 @@ export default function LoginModal({ isOpen, onClose }) {
   return (
     /* OVERLAY */
     <div className="fixed inset-0 z-[9999] bg-black/40 backdrop-blur-sm">
-
       {/* MODAL */}
       <div
         className="fixed top-1/2 left-1/2
-                   -translate-x-1/2 -translate-y-1/2
-                   bg-white rounded-2xl shadow-2xl
-                   w-[420px] max-w-[90vw]
-                   border border-gray-200
-                   overflow-hidden"
+        -translate-x-1/2 -translate-y-1/2
+        bg-white rounded-2xl shadow-2xl
+        w-[420px] max-w-[90vw]
+        border border-gray-200
+        overflow-hidden"
       >
         {/* BOTÓN CERRAR */}
         <button
-          onClick={onClose}
+          onClick={handleCloseToHome}
           className="absolute top-4 right-4 bg-white rounded-full p-2 shadow-md border hover:bg-gray-50 transition"
         >
           <X size={20} />
@@ -63,7 +70,9 @@ export default function LoginModal({ isOpen, onClose }) {
         {/* CONTENIDO */}
         <div className="px-8 pb-10">
           <h2 className="text-xl font-bold text-center mb-2">
-            {isLogin ? "Inicia sesión en tu cuenta" : "Crea una nueva cuenta"}
+            {isLogin
+              ? "Inicia sesión en tu cuenta"
+              : "Crea una nueva cuenta"}
           </h2>
 
           <p className="text-sm text-gray-500 text-center mb-8">
@@ -118,7 +127,9 @@ export default function LoginModal({ isOpen, onClose }) {
                 type="password"
                 placeholder="Confirmar contraseña"
                 value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
+                onChange={(e) =>
+                  setConfirmPassword(e.target.value)
+                }
                 className="w-full box-border px-4 py-3 border rounded-lg outline-none focus:ring-2 focus:ring-[#99BFA1]"
                 required
               />

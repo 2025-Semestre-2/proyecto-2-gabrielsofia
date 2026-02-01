@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Navbar({ onOpenLogin, onOpenServiceType }) {
   const [entrada, setEntrada] = useState("");
@@ -6,6 +7,7 @@ export default function Navbar({ onOpenLogin, onOpenServiceType }) {
   const [personas, setPersonas] = useState(1);
   const [visible, setVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const navigate = useNavigate();
 
   const getTodayDate = () => {
     const today = new Date();
@@ -44,13 +46,20 @@ export default function Navbar({ onOpenLogin, onOpenServiceType }) {
             </h1>
 
             <div className="flex gap-10 flex-1 justify-center">
-              <button className="bg-[#E69C9C] text-white text-lg font-semibold px-10 py-4 rounded-full hover:bg-[#dc8f8f] transition shadow-md">
-                Actividades
-              </button>
+              <button
+  onClick={() => navigate("/actividades")}
+  className="bg-[#E69C9C] text-white text-lg font-semibold px-10 py-4 rounded-full hover:bg-[#dc8f8f] transition shadow-md"
+>
+  Actividades
+</button>
 
-              <button className="bg-[#E69C9C] text-white text-lg font-semibold px-10 py-4 rounded-full hover:bg-[#dc8f8f] transition shadow-md">
-                Alquileres disponibles
-              </button>
+              <button
+  onClick={() => navigate("/alquileres")}
+  className="bg-[#E69C9C] text-white text-lg font-semibold px-10 py-4 rounded-full hover:bg-[#dc8f8f] transition shadow-md"
+>
+  Alquileres disponibles
+</button>
+
 
               <button
                 onClick={onOpenServiceType}
@@ -60,12 +69,32 @@ export default function Navbar({ onOpenLogin, onOpenServiceType }) {
               </button>
             </div>
 
-            <button
-              onClick={onOpenLogin}
-              className="bg-[#99BFA1] rounded-full px-6 py-3 text-base hover:shadow transition whitespace-nowrap"
-            >
-              Iniciar sesión
-            </button>
+            {/* BOTONES DERECHA */}
+<div className="flex items-center gap-3 whitespace-nowrap">
+
+  <button
+    onClick={() => navigate("/admin")}
+    className="bg-[#E69C9C] text-white px-5 py-2 rounded-full font-semibold hover:bg-[#dc8f8f] transition shadow-sm"
+  >
+    Administrar
+  </button>
+
+  <button
+    onClick={onOpenLogin}
+    className="bg-[#99BFA1] rounded-full px-6 py-3 text-base hover:shadow transition"
+  >
+    Iniciar sesión
+  </button>
+
+  <button
+    onClick={() => navigate("/anfitrion")}
+    className="px-4 py-2 rounded-lg bg-[#99BFA1] text-white font-semibold"
+  >
+    Modo anfitrión
+  </button>
+
+</div>
+
           </div>
 
           {/* BUSCADOR */}

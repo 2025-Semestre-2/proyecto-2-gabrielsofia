@@ -64,7 +64,7 @@ export default function SelectListingDetails() {
       <main className="flex-1 flex justify-center py-10 overflow-auto">
         <div className="w-full max-w-xl px-6">
           <h2 className="text-3xl font-bold mb-2 text-center">
-            Terminemos con unos últimos detalles 😄
+            Terminemos con unos últimos detalles :D
           </h2>
           <p className="text-gray-500 mb-10 text-center">
             Esta información se usará para promover tu alojamiento
@@ -116,7 +116,7 @@ export default function SelectListingDetails() {
               </h3>
 
               {/* REDES SOCIALES */}
-              <div className="space-y-4 mb-8">
+              <div className="space-y-3 mb-8">
                 {[
                   { key: "facebook", label: "Facebook" },
                   { key: "instagram", label: "Instagram" },
@@ -129,12 +129,11 @@ export default function SelectListingDetails() {
                       {s.label}
                     </label>
                     <input
-                      placeholder={`Usuario de ${s.label}`}
                       value={socials[s.key]}
                       onChange={(e) =>
                         setSocials({ ...socials, [s.key]: e.target.value })
                       }
-                      className="w-full rounded-xl border px-4 py-3 focus:ring-2 focus:ring-[#99BFA1]"
+                      className="w-full rounded-lg border px-3 py-2 text-sm focus:ring-1 focus:ring-[#99BFA1]"
                     />
                   </div>
                 ))}
@@ -142,6 +141,10 @@ export default function SelectListingDetails() {
 
               {/* TELÉFONOS */}
               <div className="space-y-4 mb-8">
+                <p className="text-sm text-gray-500 mb-3">
+                  Ingrese dos números para contactar
+                </p>
+
                 {phones.map((phone, index) => (
                   <div key={index} className="flex gap-3">
                     <select
@@ -151,25 +154,22 @@ export default function SelectListingDetails() {
                         copy[index].countryCode = e.target.value;
                         setPhones(copy);
                       }}
-                      className="rounded-xl border px-3 py-3"
+                      className="rounded-lg border px-2 py-2 text-sm"
                     >
                       <option value="+506">🇨🇷 +506</option>
-                      <option value="+52">🇲🇽 +52</option>
-                      <option value="+57">🇨🇴 +57</option>
-                      <option value="+1">🇺🇸 +1</option>
-                      <option value="+34">🇪🇸 +34</option>
                     </select>
 
                     <input
-                      type="tel"
+                      type="text"
+                      inputMode="numeric"
+                      pattern="[0-9]*"
                       placeholder="Número de teléfono"
                       value={phone.number}
-                      onChange={(e) => {
-                        const copy = [...phones];
-                        copy[index].number = e.target.value;
-                        setPhones(copy);
-                      }}
-                      className="flex-1 rounded-xl border px-4 py-3"
+                      onChange={(e) => {const onlyNumbers = e.target.value.replace(/\D/g, "");
+                      const copy = [...phones];
+                      copy[index].number = onlyNumbers;
+                      setPhones(copy);}}
+                      className="flex-1 rounded-xl border px-3 py-2 text-sm focus:ring-2 focus:ring-[#99BFA1]"
                     />
                   </div>
                 ))}
@@ -183,7 +183,6 @@ export default function SelectListingDetails() {
                 <input
                   value={legalId}
                   onChange={(e) => setLegalId(e.target.value)}
-                  placeholder="3-101-123456"
                   className="w-full rounded-xl border px-5 py-4 focus:ring-2 focus:ring-[#99BFA1]"
                 />
               </div>
@@ -250,7 +249,7 @@ export default function SelectListingDetails() {
                   : "bg-gray-200 text-gray-400 cursor-not-allowed"
               }`}
             >
-              Continuar
+              Crear anuncio
             </button>
           </div>
         </div>

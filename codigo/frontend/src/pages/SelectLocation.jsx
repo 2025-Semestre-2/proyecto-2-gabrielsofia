@@ -1,26 +1,30 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import {FaTimes} from "react-icons/fa";
+import { useNavigate, useLocation } from "react-router-dom";
+import { FaTimes } from "react-icons/fa";
 
- const cantonesLimon = {
-   "Limón": ["Limón", "Valle La Estrella", "Río Blanco", "Matama"],
-   "Pococí": ["Guápiles", "Jiménez", "La Rita", "Roxana", "Cariari", "Colorado", "La Colonia"],
-   "Siquirres": ["Siquirres", "Pacuarito", "Florida", "Germania", "Cairo", "Alegria", "Reventazon"],
-   "Talamanca": ["Bratsi", "Sixaola", "Cahuita", "Telire"],
-   "Matina": ["Matina", "Batán", "Carrandi"],
-   "Guácimo": ["Guácimo", "Mercedes", "Pocora", "Río Jiménez", "Duacarí"],
- };
+const cantonesLimon = {
+  Limón: ["Limón", "Valle La Estrella", "Río Blanco", "Matama"],
+  Pococí: ["Guápiles", "Jiménez", "La Rita", "Roxana", "Cariari", "Colorado", "La Colonia"],
+  Siquirres: ["Siquirres", "Pacuarito", "Florida", "Germania", "Cairo", "Alegria", "Reventazon"],
+  Talamanca: ["Bratsi", "Sixaola", "Cahuita", "Telire"],
+  Matina: ["Matina", "Batán", "Carrandi"],
+  Guácimo: ["Guácimo", "Mercedes", "Pocora", "Río Jiménez", "Duacarí"],
+};
 
 export default function SelectLocation() {
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const stayType = location.state?.stayType;
 
   const [form, setForm] = useState({
-  canton: "",
-  distrito: "",
-  barrio: "",
-  senas: "",
-  gpsUrl: "",
-});
+    canton: "",
+    distrito: "",
+    barrio: "",
+    senas: "",
+    gpsUrl: "",
+    roomNumber: "",
+  });
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -31,7 +35,8 @@ export default function SelectLocation() {
     form.distrito &&
     form.barrio &&
     form.senas &&
-    form.gpsUrl;
+    form.gpsUrl &&
+    (stayType !== "Habitación privada" || form.roomNumber);
 
   return (
     <div className="h-screen bg-white flex flex-col overflow-hidden">
@@ -41,14 +46,14 @@ export default function SelectLocation() {
         <button
           onClick={() => navigate("/")}
           className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-100 transition"
-          aria-label="Cerrar">
+        >
           <FaTimes className="text-xl text-gray-600" />
         </button>
       </header>
 
       {/* CONTENIDO */}
       <main className="flex-1 py-10 overflow-hidden">
-          <div className="mx-auto w-full max-w-xl px-6">
+        <div className="mx-auto w-full max-w-xl px-6">
           <h2 className="text-4xl font-bold mb-3 text-center">
             Confirma tu dirección
           </h2>
@@ -83,13 +88,23 @@ export default function SelectLocation() {
               <label className="block text-sm font-semibold mb-1">Cantón</label>
               <select
                 name="canton"
-                value={form.canton} onChange={(e) => setForm({ ...form, canton: e.target.value, distrito: "" })}
-                className="w-full rounded-xl border px-5 py-4 bg-white focus:ring-2 focus:ring-[#99BFA1]">
+                value={form.canton}
+                onChange={(e) =>
+                  setForm({
+                    ...form,
+                    canton: e.target.value,
+                    distrito: "",
+                  })
+                }
+                className="w-full rounded-xl border px-5 py-4 bg-white focus:ring-2 focus:ring-[#99BFA1]"
+              >
                 <option value="" disabled>
-                  Seleccione un Canton
+                  Seleccione un cantón
                 </option>
-                {Object.keys(cantonesLimon).map((canton) => (<option key={canton} value={canton}>{canton}
-                </option>
+                {Object.keys(cantonesLimon).map((canton) => (
+                  <option key={canton} value={canton}>
+                    {canton}
+                  </option>
                 ))}
               </select>
             </div>
@@ -102,7 +117,11 @@ export default function SelectLocation() {
                 value={form.distrito}
                 onChange={handleChange}
                 disabled={!form.canton}
-                className="w-full rounded-xl border px-5 py-4 bg-white focus:ring-2 focus:ring-[#99BFA1] disabled:bg-gray-100 disabled:text-gray-400">
+                className="w-full rounded-xl border px-5 py-4 bg-white focus:ring-2 focus:ring-[#99BFA1] disabled:bg-gray-100"
+              >
+                <option value="" disabled>
+                  Seleccione un distrito
+                </option>
                 {form.canton &&
                   cantonesLimon[form.canton].map((distrito) => (
                     <option key={distrito} value={distrito}>
@@ -111,6 +130,21 @@ export default function SelectLocation() {
                   ))}
               </select>
             </div>
+
+            {/* NÚMERO DE HABITACIÓN (CONDICIONAL) */}
+            {stayType === "Habitación privada" && (
+              <div>
+                <label className="block text-sm font-semibold mb-1">
+                  Número de habitación
+                </label>
+                <input
+                  name="roomNumber"
+                  value={form.roomNumber}
+                  onChange={handleChange}
+                  className="w-full rounded-xl border px-5 py-4 focus:ring-2 focus:ring-[#99BFA1]"
+                />
+              </div>
+            )}
 
             {/* Barrio */}
             <div>
@@ -123,7 +157,7 @@ export default function SelectLocation() {
               />
             </div>
 
-            {/* Señas exactas */}
+            {/* Señas */}
             <div>
               <label className="block text-sm font-semibold mb-1">
                 Señas exactas
@@ -155,19 +189,21 @@ export default function SelectLocation() {
           <div className="flex justify-center gap-6 mt-10">
             <button
               onClick={() => navigate(-1)}
-              className="px-10 py-4 rounded-2xl font-bold text-lg
-                bg-gray-200 text-gray-600 hover:bg-gray-300"
+              className="px-10 py-4 rounded-2xl font-bold text-lg bg-gray-200 text-gray-600 hover:bg-gray-300"
             >
               ← Atrás
             </button>
 
             <button
-            disabled={!isValid}
-            onClick={() => navigate("/registro/hospedaje/datos")}
-            className={`px-14 py-4 rounded-2xl font-bold text-lg transition-all${isValid
-            ? "bg-gradient-to-r from-[#99BFA1] to-[#8BB593] text-white hover:shadow-xl hover:scale-[1.02]"
-            : "bg-gray-200 text-gray-400 cursor-not-allowed"
-            }`}>Continuar
+              disabled={!isValid}
+              onClick={() => navigate("/registro/hospedaje/datos")}
+              className={`px-14 py-4 rounded-2xl font-bold text-lg transition-all ${
+                isValid
+                  ? "bg-gradient-to-r from-[#99BFA1] to-[#8BB593] text-white hover:shadow-xl hover:scale-[1.02]"
+                  : "bg-gray-200 text-gray-400 cursor-not-allowed"
+              }`}
+            >
+              Continuar
             </button>
           </div>
         </div>

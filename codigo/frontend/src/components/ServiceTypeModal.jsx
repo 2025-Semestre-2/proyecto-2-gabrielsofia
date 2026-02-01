@@ -18,14 +18,12 @@ export default function ServiceTypeModal({ isOpen, onClose, onSelect }) {
 
   const handleContinue = () => {
     if (!selected) return;
-    onSelect(selected); // "hospedaje"  "actividades"
+    onSelect(selected); // "hospedaje" | "actividades"
     onClose();
   };
 
   return (
-    /* OVERLAY */
     <div className="fixed inset-0 z-[9999] bg-black/40 backdrop-blur-sm">
-
       {/* MODAL */}
       <div
         className="fixed top-1/2 left-1/2
