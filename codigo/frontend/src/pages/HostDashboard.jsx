@@ -23,11 +23,11 @@ export default function HostDashboard({ onOpenServiceType }) {
         </div>
       </header>
 
-      {/* CONTENIDO */}
+     
       <main className="px-6 pt-10 pb-20">
         <div className="max-w-6xl mx-auto">
 
-          {/* TABS */}
+        
           <div className="flex gap-8 border-b border-gray-200 mb-10">
             {[
               { key: "anuncios", label: "Tus anuncios" },
@@ -48,7 +48,7 @@ export default function HostDashboard({ onOpenServiceType }) {
             ))}
           </div>
 
-          {/* ================= ANUNCIOS ================= */}
+       
           {activeTab === "anuncios" && (
             <>
               <div className="flex justify-end mb-10">
@@ -72,7 +72,7 @@ export default function HostDashboard({ onOpenServiceType }) {
             </>
           )}
 
-          {/* ================= RESERVAS ================= */}
+         
           {activeTab === "reservas" && (
             <div className="text-center mt-24">
               <h2 className="text-4xl font-bold text-gray-800 mb-4">
@@ -84,11 +84,11 @@ export default function HostDashboard({ onOpenServiceType }) {
             </div>
           )}
 
-          {/* ================= REPORTES ================= */}
+         
           {activeTab === "reportes" && (
             <div className="space-y-10">
 
-              {/* TITULO */}
+         
               <div>
                 <h2 className="text-3xl font-bold text-gray-800 mb-2">
                   Reportes
@@ -98,10 +98,10 @@ export default function HostDashboard({ onOpenServiceType }) {
                 </p>
               </div>
 
-              {/* FILTROS */}
+            
               <div className="bg-white border rounded-xl p-8 shadow-sm space-y-6">
 
-                {/* TIPO DE REPORTE */}
+             
                 <div>
                   <label className="block text-sm font-semibold text-gray-700 mb-2">
                     Tipo de reporte
@@ -114,7 +114,7 @@ export default function HostDashboard({ onOpenServiceType }) {
                   </select>
                 </div>
 
-                {/* FECHAS */}
+              
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-2">
@@ -137,7 +137,7 @@ export default function HostDashboard({ onOpenServiceType }) {
                   </div>
                 </div>
 
-                {/* TIPO DE HABITACIÓN */}
+         
                 <div>
                   <label className="block text-sm font-semibold text-gray-700 mb-3">
                     Tipo de habitación
@@ -145,7 +145,7 @@ export default function HostDashboard({ onOpenServiceType }) {
                  
                 </div>
 
-                {/* HABITACIÓN ESPECÍFICA */}
+             
                 <div>
                   <label className="block text-sm font-semibold text-gray-700 mb-2">
                     Habitación específica
@@ -156,7 +156,7 @@ export default function HostDashboard({ onOpenServiceType }) {
                   </select>
                 </div>
 
-                {/* RANGO DE EDADES */}
+            
                 <div>
                   <label className="block text-sm font-semibold text-gray-700 mb-2">
                     Rango de edades
@@ -170,7 +170,7 @@ export default function HostDashboard({ onOpenServiceType }) {
                   </select>
                 </div>
 
-                {/* UBICACIÓN */}
+            
                 <div>
                   <label className="block text-sm font-semibold text-gray-700 mb-2">
                     Ubicación
@@ -180,7 +180,7 @@ export default function HostDashboard({ onOpenServiceType }) {
                   </select>
                 </div>
 
-                {/* BOTÓN */}
+          
                 <div className="flex justify-end">
                   <button className="px-8 py-3 rounded-md bg-[#99BFA1] text-white font-semibold hover:bg-[#88ad90] transition">
                     Generar reporte
@@ -188,7 +188,7 @@ export default function HostDashboard({ onOpenServiceType }) {
                 </div>
               </div>
 
-              {/* RESULTADOS */}
+              
               <div className="bg-white border rounded-xl p-12 text-center text-gray-500">
                 Aquí se mostrará el resultado del reporte seleccionado
               </div>
