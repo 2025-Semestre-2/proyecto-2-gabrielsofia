@@ -49,7 +49,7 @@ export default function SelectListingDetails() {
 
   return (
     <div className="h-screen bg-white flex flex-col">
-      {/* HEADER */}
+      
       <header className="flex items-center justify-between px-10 py-6 border-b">
         <h1 className="font-bold text-2xl text-[#99BFA1]">LimonT&H</h1>
         <button
@@ -60,7 +60,7 @@ export default function SelectListingDetails() {
         </button>
       </header>
 
-      {/* CONTENIDO */}
+    
       <main className="flex-1 flex justify-center py-10 overflow-auto">
         <div className="w-full max-w-xl px-6">
           <h2 className="text-3xl font-bold mb-2 text-center">
@@ -71,7 +71,7 @@ export default function SelectListingDetails() {
           </p>
 
           <div className="space-y-6">
-            {/* NOMBRE */}
+    
             <div>
               <label className="block text-sm font-semibold mb-1">
                 Nombre del alojamiento
@@ -83,7 +83,7 @@ export default function SelectListingDetails() {
               />
             </div>
 
-            {/* PRECIO */}
+     
             <div>
               <label className="block text-sm font-semibold mb-1">
                 Precio por noche (₡)
@@ -96,7 +96,7 @@ export default function SelectListingDetails() {
               />
             </div>
 
-            {/* DESCRIPCIÓN */}
+            
             <div>
               <label className="block text-sm font-semibold mb-1">
                 Descripción
@@ -109,13 +109,13 @@ export default function SelectListingDetails() {
               />
             </div>
 
-            {/* DATOS PARA PUBLICACIÓN */}
+           
             <div className="pt-8 border-t">
               <h3 className="text-xl font-bold mb-6 text-center">
                 Datos para crear tu publicación
               </h3>
 
-              {/* REDES SOCIALES */}
+              
               <div className="space-y-3 mb-8">
                 {[
                   { key: "facebook", label: "Facebook" },
@@ -139,7 +139,6 @@ export default function SelectListingDetails() {
                 ))}
               </div>
 
-              {/* TELÉFONOS */}
               <div className="space-y-4 mb-8">
                 <p className="text-sm text-gray-500 mb-3">
                   Ingrese dos números para contactar
@@ -175,7 +174,6 @@ export default function SelectListingDetails() {
                 ))}
               </div>
 
-              {/* CÉDULA */}
               <div>
                 <label className="block text-sm font-semibold mb-1">
                   Cédula jurídica
@@ -188,7 +186,6 @@ export default function SelectListingDetails() {
               </div>
             </div>
 
-            {/* FOTOS */}
             <div>
               <label className="block text-sm font-semibold mb-3">
                 Fotos del alojamiento (mínimo 3)
@@ -231,7 +228,6 @@ export default function SelectListingDetails() {
             </div>
           </div>
 
-          {/* BOTONES */}
           <div className="flex justify-center gap-6 mt-12">
             <button
               onClick={() => navigate(-1)}
