@@ -14,6 +14,8 @@ import SelectLocation from "./pages/SelectLocation";
 import SelectBasicInfo from "./pages/SelectBasicInfo";
 import SelectListingDetails from "./pages/SelectListingDetails";
 
+
+
 /* ACTIVIDADES */
 import SelectActivityType from "./pages/SelectActivityType";
 import SelectActivityServices from "./pages/SelectActivityServices";
@@ -22,6 +24,7 @@ import SelectActivityServices from "./pages/SelectActivityServices";
 import HostDashboard from "./pages/HostDashboard";
 import ActivitiesList from "./pages/ActivitiesList";
 import HospedajesList from "./pages/HospedajesList";
+<Route path="/alquileres" element={<HospedajesList />} />
 
 function App() {
   const navigate = useNavigate();

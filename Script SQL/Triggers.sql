@@ -60,7 +60,6 @@ BEGIN
 END;
 GO
 
-GO
 --Trigger para evitar que se pueda eliminar un cliente si tiene una reserva activa.
 CREATE OR ALTER TRIGGER ClienteNoEliminarSiTieneReserva
 ON Cliente
@@ -83,5 +82,74 @@ BEGIN
     FROM Cliente c
     JOIN deleted d
       ON d.IdentificacionCliente = c.IdentificacionCliente;
+END;
+GO
+
+--ACTUALIZAR ESTADO DE HABITACION
+CREATE TRIGGER trg_ActualizarEstadoHabitacion
+ON Reservacion
+AFTER INSERT, UPDATE
+AS
+BEGIN
+    SET NOCOUNT ON;
+    UPDATE Habitacion
+    SET IdEstado = 2 
+    WHERE IdHabitacion IN (
+        SELECT i.IdHabitacion 
+        FROM inserted i
+        WHERE i.Estado IN ('ACTIVO', 'CHECK-IN')
+    );
+    UPDATE Habitacion
+    SET IdEstado = 1 
+    WHERE IdHabitacion IN (
+        SELECT i.IdHabitacion 
+        FROM inserted i
+        WHERE i.Estado IN ('CANCELADA', 'NO-SHOW')
+    );
+END;
+GO
+
+--CALCULAR IMPORTE
+CREATE OR ALTER TRIGGER trg_CalcularImporteFactura
+ON Factura
+AFTER INSERT
+AS
+BEGIN
+    SET NOCOUNT ON;
+    UPDATE f
+    SET ImporteTotal = i.NumNoches * th.Precio
+    FROM Factura f
+    JOIN inserted i ON f.IdFactura = i.IdFactura
+    JOIN Reservacion r ON i.NumeroReserva = r.IdReservacion
+    JOIN Habitacion h ON r.IdHabitacion = h.IdHabitacion
+    JOIN TipoHabitacion th ON h.IdTipo = th.IdTipo
+    WHERE i.ImporteTotal = 0;
+END;
+GO
+
+--NO MODIFICAR FACTURAS PAGAS
+CREATE OR ALTER TRIGGER trg_NoModificarFacturaPagada
+ON Factura
+INSTEAD OF UPDATE
+AS
+BEGIN
+    SET NOCOUNT ON;
+    IF EXISTS (
+        SELECT 1 FROM deleted d
+        WHERE d.Estado = 'PAGADO'
+    )
+    BEGIN
+        RAISERROR('No se puede modificar una factura ya pagada.', 16, 1);
+        ROLLBACK TRANSACTION;
+        RETURN;
+    END
+    UPDATE f
+    SET 
+        Estado = i.Estado,
+        MetodoPago = i.MetodoPago,
+        ImporteTotal = i.ImporteTotal,
+        FechaHora = GETDATE()
+    FROM Factura f
+    JOIN inserted i ON f.IdFactura = i.IdFactura;
 END;
 GO

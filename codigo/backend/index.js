@@ -11,6 +11,9 @@ app.use(express.json());
 conectarBD();
 
 app.use("/habitaciones", HabitacionesRoute);
+const cors = require("cors");
+app.use(cors());
+
 app.use("/actividades", ActividadesRoute);
 
 app.get("/", (req, res) => {

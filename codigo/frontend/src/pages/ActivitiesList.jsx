@@ -1,57 +1,73 @@
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import { FaCalendarAlt } from "react-icons/fa";
 
-export default function ActivitiesList() {
-  const navigate = useNavigate();
+export default function HospedajesList() {
+  const { state } = useLocation();
+
+  const [resultados, setResultados] = useState([]);
+  const [filtros] = useState(state);
+
+  useEffect(() => {
+    if (!state) return;
+
+    fetch("http://localhost:3000/habitaciones/buscar", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        Destino: state.destino,
+        FechaIn: state.entrada,
+        FechaFn: state.salida,
+        CupoPersonas: state.personas,
+      }),
+    })
+      .then((r) => r.json())
+      .then((data) => setResultados(data))
+      .catch(console.error);
+  }, []);
 
   return (
-    <div className="min-h-screen bg-[#fdfbf7] px-6 py-10">
-      <div className="max-w-6xl mx-auto space-y-8">
+    <div className="min-h-screen bg-[#fdfbf7] px-6 py-10 pt-32">
+      <div className="max-w-6xl mx-auto space-y-6">
 
-        {/* TÍTULO */}
-        <h1 className="text-3xl font-bold text-gray-800">
-          Actividades disponibles
-        </h1>
+        <h1 className="text-3xl font-bold">Hospedajes disponibles</h1>
 
-        {/* ACTIVIDAD (CARD) */}
-        {[1, 2, 3].map((item) => (
-          <div
-            key={item}
-            className="flex justify-between items-center bg-white border rounded-xl p-6 hover:shadow transition"
-          >
-            {/* INFO */}
-            <div className="space-y-2">
-              <h2 className="text-xl font-semibold text-gray-800">
-                Tour de canopy
-              </h2>
+        {filtros && (
+          <p className="text-sm text-gray-500">
+            {filtros.destino} · {filtros.entrada} → {filtros.salida} · {filtros.personas} personas
+          </p>
+        )}
 
-              <p className="text-sm text-gray-500">
-                4 personas · 2 horas · Equipo incluido
-              </p>
+        {resultados.length === 0 ? (
+          <p className="text-gray-400 pt-10">Sin resultados.</p>
+        ) : (
+          resultados.map((h, i) => (
+            <div
+              key={i}
+              className="flex justify-between bg-white border rounded-xl p-6"
+            >
+              <div>
+                <h2 className="font-semibold text-xl">
+                  {h.NombreHospedaje}
+                </h2>
 
-              <p className="text-sm text-gray-500">
-                Guía certificado · Seguridad incluida
-              </p>
-            </div>
-
-            {/* PRECIO + ICONO */}
-            <div className="flex items-center gap-6">
-              <div className="text-right">
-                <p className="text-lg font-semibold text-gray-800">
-                  ₡25,000 / persona
+                <p className="text-sm text-gray-500">
+                  {h.CupoHuespedes} huéspedes
                 </p>
-                <p className="text-xs text-gray-400">CRC</p>
+
+                <p className="text-sm text-gray-500">
+                  {h.Provincia} · {h.Canton} · {h.Barrio}
+                </p>
               </div>
 
-              <FaCalendarAlt className="text-gray-400 text-xl" />
+              <div className="flex items-center gap-4">
+                <p className="font-semibold">₡{h.PrecioNoche}</p>
+                <FaCalendarAlt />
+              </div>
             </div>
-          </div>
-        ))}
+          ))
+        )}
 
-        {/* VACÍO (cuando no haya actividades reales) */}
-        <div className="text-center text-gray-400 pt-16">
-          <p>Más actividades aparecerán aquí pronto</p>
-        </div>
       </div>
     </div>
   );
