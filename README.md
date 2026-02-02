@@ -2,11 +2,10 @@
 # [NOMBRE DEL PROYECTO]
 # [Proyecto 2 Bases de datos]
 ### Nombre y carné de los integrantes: 
-
-
-### Estado del proyecto: 
 -Gabriel Elias Garro Cruz - 2024227539
 -Sofia Elena Barrantes Miranda - 2024247378
-### Estado del proyecto:-Medio-
+
+### Estado del proyecto: Medio
+
 ### Enlace del video:
 Recordar que el video debe ser público para ser visto por el profesor
