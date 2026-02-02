@@ -5,7 +5,6 @@ async function obtenerHabitaciones(req, res) {
   try {
     const pool = obtenerPool();
 
-    // Si vienen parámetros -> buscar “normal” con el SP
     const { destino, fechaIn, fechaFn, cupoPersonas } = req.query;
 
     const vieneBusqueda =
@@ -27,7 +26,7 @@ async function obtenerHabitaciones(req, res) {
         return res.status(400).json({ error: "cupoPersonas debe ser entero > 0" });
       }
 
-      // (Opcional pero recomendado) validar orden de fechas
+      
       const dIn = new Date(fechaIn);
       const dFn = new Date(fechaFn);
       if (Number.isNaN(dIn.getTime()) || Number.isNaN(dFn.getTime())) {
@@ -43,12 +42,11 @@ async function obtenerHabitaciones(req, res) {
         .input("FechaIn", sql.Date, fechaIn)
         .input("FechaFn", sql.Date, fechaFn)
         .input("CupoPersonas", sql.Int, cupo)
-        .execute("dbo.BuscarHabitaciones"); // <- nombre exacto de tu SP
+        .execute("dbo.BuscarHabitaciones"); 
 
       return res.json(resultado.recordset);
     }
 
-    // Si NO vienen parámetros -> devolver la view completa (como antes)
     const resultado = await pool.request().query("SELECT * FROM BusquedaHabitaciones");
     return res.json(resultado.recordset);
   } catch (err) {
