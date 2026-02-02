@@ -39,7 +39,7 @@ export default function Navbar({ onOpenLogin, onOpenServiceType }) {
       <div className="flex justify-center pt-6 px-6">
         <div className="w-full max-w-5xl bg-white rounded-2xl shadow-lg border border-gray-200">
 
-          {/* FILA SUPERIOR */}
+
           <div className="px-6 py-4 flex items-center justify-between gap-6">
             <h1 className="font-bold text-2xl text-[#99BFA1] whitespace-nowrap">
               LimonT&H
@@ -69,7 +69,7 @@ export default function Navbar({ onOpenLogin, onOpenServiceType }) {
               </button>
             </div>
 
-            {/* BOTONES DERECHA */}
+
 <div className="flex items-center gap-3 whitespace-nowrap">
 
   <button
@@ -97,11 +97,11 @@ export default function Navbar({ onOpenLogin, onOpenServiceType }) {
 
           </div>
 
-          {/* BUSCADOR */}
+
           <div className="px-6 pb-5">
             <div className="flex bg-white rounded-xl border overflow-hidden text-sm">
 
-              {/* DESTINO */}
+     
               <div className="flex-1 px-4 py-3 border-r flex flex-col justify-center">
                 <span className="text-[11px] font-semibold text-gray-600 mb-1">
                   DESTINO
@@ -112,7 +112,6 @@ export default function Navbar({ onOpenLogin, onOpenServiceType }) {
                 />
               </div>
 
-              {/* LLEGADA */}
               <div className="flex-1 px-4 py-3 border-r flex flex-col justify-center">
                 <span className="text-[11px] font-semibold text-gray-600 mb-1">
                   LLEGADA
@@ -129,7 +128,7 @@ export default function Navbar({ onOpenLogin, onOpenServiceType }) {
                 />
               </div>
 
-              {/* SALIDA */}
+
               <div className="flex-1 px-4 py-3 border-r flex flex-col justify-center">
                 <span className="text-[11px] font-semibold text-gray-600 mb-1">
                   SALIDA
@@ -144,7 +143,7 @@ export default function Navbar({ onOpenLogin, onOpenServiceType }) {
                 />
               </div>
 
-              {/* PERSONAS */}
+        
               <div className="flex-1 px-4 py-3 border-r flex flex-col justify-center">
                 <span className="text-[11px] font-semibold text-gray-600 mb-1">
                   PERSONAS
@@ -166,7 +165,7 @@ export default function Navbar({ onOpenLogin, onOpenServiceType }) {
                 </div>
               </div>
 
-              {/* BOTÓN BUSCAR */}
+
               <button className="bg-[#99BFA1] text-white px-6 font-semibold hover:bg-[#8bb394] transition rounded-r-xl">
                 Buscar
               </button>
