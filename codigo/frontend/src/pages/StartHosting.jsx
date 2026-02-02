@@ -14,7 +14,7 @@ export default function StartHosting() {
 
   return (
     <div className="h-screen overflow-hidden bg-white flex flex-col">
-      {/* HEADER */}
+
       <header className="flex items-center justify-between px-8 py-4 border-b">
         <h1 className="font-bold text-2xl text-[#99BFA1]">LimonT&H</h1>
         <button
@@ -25,10 +25,10 @@ export default function StartHosting() {
         </button>
       </header>
 
-      {/* MAIN */}
+ 
       <main className="flex-1 flex items-center justify-center px-6">
         <div className="w-full max-w-6xl">
-          {/* TÍTULO */}
+
           <div className="text-center mb-10">
             <h2 className="text-4xl md:text-5xl font-bold mb-3">
               Comienza tu viaje como <br />
@@ -41,9 +41,9 @@ export default function StartHosting() {
             </p>
           </div>
 
-          {/* PASOS */}
+ 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {/* PASO 1 */}
+
             <StepCard
               number={1}
               color="#99BFA1"
@@ -57,7 +57,7 @@ export default function StartHosting() {
               bottomIcon={<Users />}
             />
 
-            {/* PASO 2 */}
+    
             <StepCard
               number={2}
               color="#E69C9C"
@@ -71,7 +71,7 @@ export default function StartHosting() {
               bottomIcon={<Star />}
             />
 
-            {/* PASO 3 */}
+
             <StepCard
               number={3}
               color="#99BFA1"
@@ -88,7 +88,7 @@ export default function StartHosting() {
         </div>
       </main>
 
-      {/* FOOTER */}
+
       <footer className="border-t px-8 py-4">
         <div className="max-w-6xl mx-auto flex justify-end gap-4">
           <button
@@ -110,7 +110,7 @@ export default function StartHosting() {
   );
 }
 
-/* CARD REUTILIZABLE */
+
 function StepCard({ number, color, icon, title, items, bottomIcon }) {
   return (
     <div className="relative border rounded-2xl p-6 shadow-sm hover:shadow-md transition">
