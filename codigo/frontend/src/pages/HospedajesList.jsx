@@ -72,7 +72,7 @@ export default function HospedajesList() {
           Alquileres disponibles
         </h1>
 
-        {/* Debug opcional (podés borrarlo luego) */}
+       
         <p className="text-sm text-gray-500">
           {filtros.destino || filtros.fechaIn || filtros.fechaFn || filtros.cupoPersonas
             ? `Filtro: destino=${filtros.destino || "-"} | ${filtros.fechaIn || "-"} → ${filtros.fechaFn || "-"} | personas=${filtros.cupoPersonas || "-"}`
@@ -86,13 +86,13 @@ export default function HospedajesList() {
           <p className="text-gray-500">No hay resultados con esos filtros.</p>
         )}
 
-        {/* CARDS REALES */}
+       
         {habitaciones.map((h, idx) => (
           <div
             key={`${h.CedulaJuridica}-${h.NumeroHabitacion}-${idx}`}
             className="flex justify-between items-center bg-white border rounded-xl p-6 hover:shadow transition"
           >
-            {/* INFO */}
+   
             <div className="space-y-2">
               <h2 className="text-xl font-semibold text-gray-800">
                 {h.NombreHospedaje} — Hab. {h.NumeroHabitacion}
@@ -115,7 +115,7 @@ export default function HospedajesList() {
               </p>
             </div>
 
-            {/* PRECIO + ICONO */}
+      
             <div className="flex items-center gap-6">
               <div className="text-right">
                 <p className="text-lg font-semibold text-gray-800">
