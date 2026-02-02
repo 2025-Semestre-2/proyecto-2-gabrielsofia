@@ -1,4 +1,4 @@
-// routes/HospedajesRoute.js
+
 const express = require("express");
 const router = express.Router();
 const { 
@@ -7,16 +7,16 @@ const {
   testConnection
 } = require("../controllers/HospedajesController");
 
-// Crear nuevo hospedaje
+
 router.post("/", createHospedaje);
 
-// Obtener todos los hospedajes
+
 router.get("/", getAllHospedajes);
 
-// Probar conexión a BD
+
 router.get("/test-connection", testConnection);
 
-// Ruta de prueba simple
+
 router.get("/test", (req, res) => {
   res.json({ 
     message: "Ruta de hospedajes funcionando",
