@@ -14,7 +14,7 @@ import {
   FaBed,
 } from "react-icons/fa";
 
-// Opciones de propiedad
+
 const propertyOptions = [
   { label: "Casa", icon: <FaHome /> },
   { label: "Apartamento", icon: <FaBuilding /> },
@@ -28,7 +28,6 @@ const propertyOptions = [
   { label: "Casa del árbol", icon: <FaTree /> },
 ];
 
-// Opciones de tipo de alojamiento
 const stayOptions = [
   {
     label: "Alojamiento completo",
@@ -61,7 +60,7 @@ export default function SelectPropertyType({
   const navigate = useNavigate();
 
   const handleContinue = () => {
-    // Guardar la selección en el estado global
+    
     setHospedajeData({
       ...hospedajeData,
       tipoHospedaje: selectedProperty,
@@ -72,7 +71,7 @@ export default function SelectPropertyType({
 
   return (
     <div className="h-screen overflow-hidden bg-white flex flex-col">
-      {/* HEADER */}
+      
       <header className="flex items-center justify-between px-10 py-6 border-b">
         <h1 className="font-bold text-2xl text-[#99BFA1]">LimonT&H</h1>
         <button
@@ -86,7 +85,7 @@ export default function SelectPropertyType({
 
       <main className="flex-1 flex justify-center px-10 py-14">
         <div className="w-full max-w-6xl">
-          {/* Sección 1: Tipo de propiedad */}
+        
           <h2 className="text-4xl font-bold mb-3 text-center">
             ¿Cuál de estas opciones describe mejor tu espacio?
           </h2>
@@ -121,7 +120,7 @@ export default function SelectPropertyType({
             </div>
           </div>
 
-          {/* Sección 2: Tipo de alojamiento */}
+        
           <div className="bg-gradient-to-r from-[#F8F9FA] to-[#F5F7FA] rounded-2xl p-10 mb-8 shadow-sm">
             <div className="text-center mb-10">
               <h2 className="text-3xl font-bold mb-3">
@@ -176,7 +175,7 @@ export default function SelectPropertyType({
             </div>
           </div>
 
-          {/* Botones de navegación */}
+      
           <div className="flex justify-center gap-6 mt-8 mb-14">
             <button
               onClick={() => navigate(-1)}
