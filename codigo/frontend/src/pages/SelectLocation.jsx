@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { FaTimes } from "react-icons/fa";
 
 const cantonesLimon = {
@@ -11,11 +11,12 @@ const cantonesLimon = {
   Guácimo: ["Guácimo", "Mercedes", "Pocora", "Río Jiménez", "Duacarí"],
 };
 
-export default function SelectLocation() {
+export default function SelectLocation({
+  hospedajeData = {},
+  setHospedajeData,
+}) {
   const navigate = useNavigate();
-  const location = useLocation();
-
-  const stayType = location.state?.stayType;
+  const stayType = hospedajeData.stayType;
 
   const [form, setForm] = useState({
     canton: "",
@@ -23,7 +24,8 @@ export default function SelectLocation() {
     barrio: "",
     senas: "",
     gpsUrl: "",
-    roomNumber: "",
+    roomNumber:
+      stayType === "Alojamiento completo" ? "1" : "",
   });
 
   const handleChange = (e) => {
@@ -61,7 +63,6 @@ export default function SelectLocation() {
             Esta información ayuda a los huéspedes a ubicar tu alojamiento
           </p>
 
-          {/* FORMULARIO */}
           <div className="space-y-6">
             {/* País */}
             <div>
@@ -87,7 +88,6 @@ export default function SelectLocation() {
             <div>
               <label className="block text-sm font-semibold mb-1">Cantón</label>
               <select
-                name="canton"
                 value={form.canton}
                 onChange={(e) =>
                   setForm({
@@ -131,8 +131,8 @@ export default function SelectLocation() {
               </select>
             </div>
 
-            {/* NÚMERO DE HABITACIÓN (CONDICIONAL) */}
-            {stayType === "Habitación privada" && (
+            {/* NÚMERO DE HABITACIÓN */}
+            {stayType === "Habitación privada" ? (
               <div>
                 <label className="block text-sm font-semibold mb-1">
                   Número de habitación
@@ -142,6 +142,17 @@ export default function SelectLocation() {
                   value={form.roomNumber}
                   onChange={handleChange}
                   className="w-full rounded-xl border px-5 py-4 focus:ring-2 focus:ring-[#99BFA1]"
+                />
+              </div>
+            ) : (
+              <div>
+                <label className="block text-sm font-semibold mb-1">
+                  Número de habitación
+                </label>
+                <input
+                  value="1"
+                  disabled
+                  className="w-full rounded-xl border px-5 py-4 bg-gray-100 text-gray-500"
                 />
               </div>
             )}
@@ -196,7 +207,18 @@ export default function SelectLocation() {
 
             <button
               disabled={!isValid}
-              onClick={() => navigate("/registro/hospedaje/datos")}
+              onClick={() => {
+                setHospedajeData({
+                  ...hospedajeData,
+                  ubicacion: form,
+                  roomNumber:
+                    stayType === "Alojamiento completo"
+                      ? "1"
+                      : form.roomNumber,
+                });
+
+                navigate("/registro/hospedaje/datos");
+              }}
               className={`px-14 py-4 rounded-2xl font-bold text-lg transition-all ${
                 isValid
                   ? "bg-gradient-to-r from-[#99BFA1] to-[#8BB593] text-white hover:shadow-xl hover:scale-[1.02]"
