@@ -33,10 +33,10 @@ function App() {
   const [isServiceTypeOpen, setIsServiceTypeOpen] = useState(false);
   const [loginIntent, setLoginIntent] = useState(null);
 
-  // 🔥 ESTADO GLOBAL DEL REGISTRO DE HOSPEDAJE
+ 
   const [hospedajeData, setHospedajeData] = useState({});
 
-  /* RUTAS SIN NAVBAR */
+  
   const hideNavbarRoutes = [
     "/empezar",
     "/registro/hospedaje/tipo",
@@ -52,7 +52,7 @@ function App() {
 
   return (
     <>
-      {/* NAVBAR */}
+   
       {!hideNavbar && !isLoginModalOpen && !isServiceTypeOpen && !isHostMode && (
         <Navbar
           onOpenLogin={() => {
@@ -66,7 +66,7 @@ function App() {
         />
       )}
 
-      {/* SERVICE TYPE MODAL */}
+ }
       <ServiceTypeModal
         isOpen={isServiceTypeOpen}
         onClose={() => setIsServiceTypeOpen(false)}
@@ -77,7 +77,7 @@ function App() {
         }}
       />
 
-      {/* LOGIN MODAL */}
+   
       {!isHostMode && (
         <LoginModal
           isOpen={isLoginModalOpen}
@@ -91,13 +91,13 @@ function App() {
         />
       )}
 
-      {/* CONTENIDO */}
+      
       {!isLoginModalOpen && !isServiceTypeOpen && (
         <>
           {!hideNavbar && !isHostMode && <div className="h-[180px]" />}
 
           <Routes>
-            {/* HOME */}
+            
             <Route path="/" element={<HomePage />} />
             <Route path="/empezar" element={<StartHosting />} />
             <Route path="/actividades" element={<ActivitiesList />} />
@@ -105,7 +105,7 @@ function App() {
             <Route path="/habitacion" element={<VistaHabitacion />} />
             <Route path="/alquileres" element={<HospedajesList />} />
 
-            {/* ANFITRIÓN */}
+            
             <Route
               path="/anfitrion"
               element={
@@ -153,7 +153,7 @@ function App() {
               }
             />
 
-            {/* ACTIVIDADES */}
+        
             <Route
               path="/registro/actividad/tipo"
               element={<SelectActivityType />}
