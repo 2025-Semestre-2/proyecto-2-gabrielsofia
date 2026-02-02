@@ -6,7 +6,7 @@ export default function RoomDetail() {
 
   return (
     <div className="min-h-screen bg-[#fdfbf7]">
-      {/* HEADER */}
+
       <header className="bg-white border-b px-6 py-4">
         <div className="max-w-6xl mx-auto flex items-center gap-4">
           <button
@@ -22,11 +22,11 @@ export default function RoomDetail() {
         </div>
       </header>
 
-      {/* CONTENIDO */}
+
       <main className="px-6 py-10">
         <div className="max-w-6xl mx-auto space-y-10">
 
-          {/* GALERÍA */}
+     
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div className="md:col-span-2 h-80 bg-gray-200 rounded-xl flex items-center justify-center text-gray-400">
               Foto principal
@@ -48,10 +48,10 @@ export default function RoomDetail() {
             </div>
           </div>
 
-          {/* INFO PRINCIPAL */}
+   
           <div className="flex flex-col lg:flex-row gap-12">
 
-            {/* IZQUIERDA */}
+   
             <div className="flex-1 space-y-6">
               <div>
                 <h2 className="text-3xl font-bold text-gray-800">
@@ -62,7 +62,7 @@ export default function RoomDetail() {
                 </p>
               </div>
 
-              {/* DETALLES */}
+         
               <div className="flex gap-8 text-gray-600">
                 <span className="flex items-center gap-2">
                   <FaUserCircle /> 2 huéspedes
@@ -78,7 +78,7 @@ export default function RoomDetail() {
                 </span>
               </div>
 
-              {/* DESCRIPCIÓN */}
+      
               <div>
                 <h3 className="font-semibold text-lg mb-2">
                   Descripción
@@ -91,7 +91,7 @@ export default function RoomDetail() {
                 </p>
               </div>
 
-              {/* SERVICIOS */}
+    
               <div>
                 <h3 className="font-semibold text-lg mb-2">
                   Servicios incluidos
@@ -105,7 +105,7 @@ export default function RoomDetail() {
               </div>
             </div>
 
-            {/* DERECHA */}
+
             <div className="w-full lg:w-96 bg-white border rounded-2xl p-6 shadow-sm space-y-6">
               <div className="text-center">
                 <p className="text-2xl font-bold text-gray-800">
@@ -118,7 +118,7 @@ export default function RoomDetail() {
                 Reservar ahora
               </button>
 
-              {/* ANFITRIÓN */}
+         
               <div className="pt-6 border-t">
                 <h4 className="font-semibold mb-3">
                   Anfitrión
