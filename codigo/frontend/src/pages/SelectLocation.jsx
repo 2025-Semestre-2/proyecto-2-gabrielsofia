@@ -42,7 +42,7 @@ export default function SelectLocation({
 
   return (
     <div className="h-screen bg-white flex flex-col overflow-hidden">
-      {/* HEADER */}
+   
       <header className="flex items-center justify-between px-10 py-6 border-b">
         <h1 className="font-bold text-2xl text-[#99BFA1]">LimonT&H</h1>
         <button
@@ -53,7 +53,6 @@ export default function SelectLocation({
         </button>
       </header>
 
-      {/* CONTENIDO */}
       <main className="flex-1 py-10 overflow-hidden">
         <div className="mx-auto w-full max-w-xl px-6">
           <h2 className="text-4xl font-bold mb-3 text-center">
@@ -64,7 +63,7 @@ export default function SelectLocation({
           </p>
 
           <div className="space-y-6">
-            {/* País */}
+       
             <div>
               <label className="block text-sm font-semibold mb-1">País</label>
               <input
@@ -74,7 +73,6 @@ export default function SelectLocation({
               />
             </div>
 
-            {/* Provincia */}
             <div>
               <label className="block text-sm font-semibold mb-1">Provincia</label>
               <input
@@ -84,7 +82,6 @@ export default function SelectLocation({
               />
             </div>
 
-            {/* Cantón */}
             <div>
               <label className="block text-sm font-semibold mb-1">Cantón</label>
               <select
@@ -109,7 +106,6 @@ export default function SelectLocation({
               </select>
             </div>
 
-            {/* Distrito */}
             <div>
               <label className="block text-sm font-semibold mb-1">Distrito</label>
               <select
@@ -131,7 +127,6 @@ export default function SelectLocation({
               </select>
             </div>
 
-            {/* NÚMERO DE HABITACIÓN */}
             {stayType === "Habitación privada" ? (
               <div>
                 <label className="block text-sm font-semibold mb-1">
@@ -157,7 +152,6 @@ export default function SelectLocation({
               </div>
             )}
 
-            {/* Barrio */}
             <div>
               <label className="block text-sm font-semibold mb-1">Barrio</label>
               <input
@@ -168,7 +162,6 @@ export default function SelectLocation({
               />
             </div>
 
-            {/* Señas */}
             <div>
               <label className="block text-sm font-semibold mb-1">
                 Señas exactas
@@ -182,7 +175,6 @@ export default function SelectLocation({
               />
             </div>
 
-            {/* GPS */}
             <div>
               <label className="block text-sm font-semibold mb-1">
                 URL de referencia GPS
@@ -196,7 +188,6 @@ export default function SelectLocation({
             </div>
           </div>
 
-          {/* BOTONES */}
           <div className="flex justify-center gap-6 mt-10">
             <button
               onClick={() => navigate(-1)}
