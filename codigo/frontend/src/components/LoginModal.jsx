@@ -40,9 +40,9 @@ export default function LoginModal({ isOpen, onClose }) {
   };
 
   return (
-    /* OVERLAY */
+  
     <div className="fixed inset-0 z-[9999] bg-black/40 backdrop-blur-sm">
-      {/* MODAL */}
+
       <div
         className="fixed top-1/2 left-1/2
         -translate-x-1/2 -translate-y-1/2
@@ -51,7 +51,7 @@ export default function LoginModal({ isOpen, onClose }) {
         border border-gray-200
         overflow-hidden"
       >
-        {/* BOTÓN CERRAR */}
+  
         <button
           onClick={handleCloseToHome}
           className="absolute top-4 right-4 bg-white rounded-full p-2 shadow-md border hover:bg-gray-50 transition"
@@ -59,7 +59,7 @@ export default function LoginModal({ isOpen, onClose }) {
           <X size={20} />
         </button>
 
-        {/* LOGO */}
+   
         <div className="pt-10 pb-8 text-center">
           <h1 className="font-bold text-3xl text-[#99BFA1]">LimonT&H</h1>
           <p className="text-gray-500 text-sm mt-1">
@@ -67,7 +67,7 @@ export default function LoginModal({ isOpen, onClose }) {
           </p>
         </div>
 
-        {/* CONTENIDO */}
+   
         <div className="px-8 pb-10">
           <h2 className="text-xl font-bold text-center mb-2">
             {isLogin
@@ -143,7 +143,7 @@ export default function LoginModal({ isOpen, onClose }) {
             </button>
           </form>
 
-          {/* SWITCH */}
+
           <div className="text-center pt-8 mt-8 border-t border-gray-200">
             <p className="text-sm text-gray-600">
               {isLogin ? "¿No tienes cuenta?" : "¿Ya tienes cuenta?"}
