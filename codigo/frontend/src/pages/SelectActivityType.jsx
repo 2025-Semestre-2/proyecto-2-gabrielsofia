@@ -17,7 +17,7 @@ import {
   FaTimes,
 } from "react-icons/fa";
 
-/* EXPERIENCIAS */
+
 const activityOptions = [
   { label: "Ruta arquitectónica", icon: <FaLandmark /> },
   { label: "Taller de arte", icon: <FaPaintBrush /> },
@@ -34,7 +34,7 @@ const activityOptions = [
   { label: "Experiencia con animales", icon: <FaPaw /> },
 ];
 
-/* CANTONES */
+
 const cantonesLimon = {
   Limón: ["Limón", "Valle La Estrella", "Río Blanco", "Matama"],
   Pococí: ["Guápiles", "Jiménez", "La Rita", "Roxana", "Cariari", "Colorado", "La Colonia"],
@@ -69,7 +69,7 @@ export default function SelectActivityType() {
 
   return (
     <div className="h-screen overflow-hidden bg-white flex flex-col">
-      {/* HEADER */}
+   
       <header className="flex items-center justify-between px-10 py-6 border-b">
         <h1 className="font-bold text-2xl text-[#99BFA1]">LimonT&H</h1>
         <button
@@ -83,7 +83,6 @@ export default function SelectActivityType() {
       <main className="flex-1 overflow-auto px-10 py-14">
         <div className="w-full max-w-6xl mx-auto">
 
-          {/* EXPERIENCIA */}
           <h2 className="text-4xl font-bold mb-3 text-center">
             ¿Qué experiencia ofrecerás a los participantes?
           </h2>
@@ -119,7 +118,6 @@ export default function SelectActivityType() {
             </div>
           </div>
 
-          {/* DIRECCIÓN */}
           <div className="bg-gradient-to-r from-white to-[#F1F5F3] rounded-2xl p-10 shadow-md">
             <h3 className="text-3xl font-bold mb-3 text-center">
               ¿Dónde se realizará la experiencia?
@@ -211,7 +209,6 @@ export default function SelectActivityType() {
             </div>
           </div>
 
-          {/* BOTONES */}
           <div className="flex justify-center gap-6 mt-12 mb-10">
             <button
               onClick={() => navigate(-1)}
