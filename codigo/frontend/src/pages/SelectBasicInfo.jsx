@@ -176,7 +176,6 @@ export default function SelectBasicInfo() {
             />
           </div>
 
-          {/* TIPOS DE CAMA */}
           <div className="mt-10">
             <h3 className="text-2xl font-bold mb-2">Tipo de camas</h3>
             <p className="text-gray-500 mb-6">
@@ -194,7 +193,6 @@ export default function SelectBasicInfo() {
             </div>
           </div>
 
-          {/* AMENITIES */}
           <div className="mt-14">
             <h3 className="text-2xl font-bold mb-2">
               Servicios disponibles
