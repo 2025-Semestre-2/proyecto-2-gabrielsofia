@@ -53,7 +53,7 @@ export default function SelectListingDetails() {
 
   return (
     <div className="min-h-screen bg-white flex flex-col overflow-x-hidden">
-      {/* HEADER */}
+ 
       <header className="flex items-center justify-between px-6 py-6 border-b">
         <h1 className="font-bold text-2xl text-[#99BFA1]">LimonT&H</h1>
         <button
@@ -64,11 +64,11 @@ export default function SelectListingDetails() {
         </button>
       </header>
 
-      {/* CONTENIDO */}
+     
       <main className="flex-1 w-full px-6 md:px-12 lg:px-20 py-10">
         <div className="w-full">
           <div className="bg-white rounded-2xl border shadow-sm p-6 md:p-10 w-full">
-            {/* TÍTULO */}
+            
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold mb-4">
                 Terminemos con unos últimos detalles :D
@@ -79,7 +79,7 @@ export default function SelectListingDetails() {
             </div>
 
             <div className="space-y-12">
-              {/* NOMBRE + PRECIO */}
+              
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div>
                   <label className="block text-sm font-semibold mb-2">
@@ -105,7 +105,7 @@ export default function SelectListingDetails() {
                 </div>
               </div>
 
-              {/* DESCRIPCIÓN */}
+         
               <div>
                 <label className="block text-sm font-semibold mb-2">
                   Descripción
@@ -118,7 +118,7 @@ export default function SelectListingDetails() {
                 />
               </div>
 
-              {/* CONTACTO */}
+      
               <div className="pt-10 border-t space-y-8">
                 <h3 className="text-2xl font-bold text-center">
                   Datos de contacto
@@ -189,7 +189,7 @@ export default function SelectListingDetails() {
                 </div>
               </div>
 
-              {/* REDES */}
+       
               <div className="pt-10 border-t">
                 <h3 className="text-xl font-bold mb-6 text-center">
                   Redes sociales
@@ -213,7 +213,7 @@ export default function SelectListingDetails() {
                 </div>
               </div>
 
-              {/* FOTOS */}
+        
               <div className="pt-10 border-t">
                 <label className="block text-sm font-semibold mb-4">
                   Fotos de la actividad (3)
@@ -255,7 +255,7 @@ export default function SelectListingDetails() {
               </div>
             </div>
 
-            {/* BOTONES */}
+  
             <div className="flex justify-center gap-6 mt-16">
               <button
                 onClick={() => navigate(-1)}
