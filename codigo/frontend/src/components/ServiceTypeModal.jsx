@@ -4,7 +4,7 @@ import { X, Hotel, Map } from "lucide-react";
 export default function ServiceTypeModal({ isOpen, onClose, onSelect }) {
   const [selected, setSelected] = useState(null);
 
-  // Bloquear scroll del fondo
+
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
@@ -18,13 +18,13 @@ export default function ServiceTypeModal({ isOpen, onClose, onSelect }) {
 
   const handleContinue = () => {
     if (!selected) return;
-    onSelect(selected); // "hospedaje" | "actividades"
+    onSelect(selected);
     onClose();
   };
 
   return (
     <div className="fixed inset-0 z-[9999] bg-black/40 backdrop-blur-sm">
-      {/* MODAL */}
+
       <div
         className="fixed top-1/2 left-1/2
                    -translate-x-1/2 -translate-y-1/2
@@ -32,7 +32,7 @@ export default function ServiceTypeModal({ isOpen, onClose, onSelect }) {
                    w-[460px] max-w-[90vw]
                    border border-gray-200"
       >
-        {/* CERRAR */}
+
         <button
           onClick={onClose}
           className="absolute -top-3 -right-3 bg-white rounded-full p-2 shadow-lg border hover:bg-gray-50 transition"
@@ -40,7 +40,7 @@ export default function ServiceTypeModal({ isOpen, onClose, onSelect }) {
           <X size={20} />
         </button>
 
-        {/* HEADER */}
+       
         <div className="pt-10 pb-6 text-center">
           <h1 className="font-bold text-3xl text-[#99BFA1]">LimonT&H</h1>
           <p className="text-gray-500 text-sm mt-1">
@@ -48,15 +48,15 @@ export default function ServiceTypeModal({ isOpen, onClose, onSelect }) {
           </p>
         </div>
 
-        {/* CONTENIDO */}
+     
         <div className="px-8 pb-10">
           <h2 className="text-xl font-bold text-center mb-8">
             ¿Qué deseas registrar?
           </h2>
 
-          {/* OPCIONES */}
+        
           <div className="grid grid-cols-1 gap-4">
-            {/* HOSPEDAJE */}
+           
             <button
               type="button"
               onClick={() => setSelected("hospedaje")}
@@ -78,7 +78,7 @@ export default function ServiceTypeModal({ isOpen, onClose, onSelect }) {
               </div>
             </button>
 
-            {/* ACTIVIDADES */}
+     
             <button
               type="button"
               onClick={() => setSelected("actividades")}
@@ -101,7 +101,7 @@ export default function ServiceTypeModal({ isOpen, onClose, onSelect }) {
             </button>
           </div>
 
-          {/* CONTINUAR */}
+
           <button
             onClick={handleContinue}
             disabled={!selected}
