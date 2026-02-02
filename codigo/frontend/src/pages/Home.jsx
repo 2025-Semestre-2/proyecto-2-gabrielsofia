@@ -8,7 +8,7 @@ export default function HomePage() {
   );
 }
 
-// INPUT (no usado aún, lo dejo intacto)
+
 function Input({ label, ...props }) {
   return (
     <div className="flex flex-col px-4 py-3 border-r last:border-r-0">
@@ -18,13 +18,13 @@ function Input({ label, ...props }) {
   );
 }
 
-// DESTACADO
+
 function FeaturedSection() {
   return (
     <section className="max-w-7xl mx-auto px-6 my-16">
       <div className="bg-[#f7f7f7] rounded-2xl p-10 grid md:grid-cols-2 gap-10 items-center">
         
-        {/* TEXTO CENTRADO, MÁS GRANDE Y ROJO CLARO */}
+        
         <div className="text-center">
           <p className="uppercase text-sm text-red-400 font-semibold mb-3">
             Te mostramos
@@ -34,7 +34,7 @@ function FeaturedSection() {
           </h2>
         </div>
 
-        {/* IMAGEN (SIN CAMBIOS) */}
+       
         <div className="rounded-xl h-40 md:h-44 overflow-hidden max-w-md mx-auto 
                 border-4 border-black bg-[#f7f7f7] p-2">
   <img
@@ -48,7 +48,7 @@ function FeaturedSection() {
   );
 }
 
-// IDEAS
+
 function IdeasSection() {
   const ideas = ["Apartamento", "Casa", "Cabaña", "Bungalow"];
 
@@ -76,7 +76,7 @@ function IdeasSection() {
   );
 }
 
-// EXPERIENCIAS
+
 function ExperiencesSection() {
   return (
     <section className="max-w-7xl mx-auto px-6 my-16">
