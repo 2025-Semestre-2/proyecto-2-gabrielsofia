@@ -6,7 +6,7 @@ const API = "http://localhost:3000";
 
 function formatDate(iso) {
   const d = new Date(iso);
-  if (Number.isNaN(d.getTime())) return ""; // por si viene raro
+  if (Number.isNaN(d.getTime())) return ""; 
   return d.toLocaleDateString();
 }
 

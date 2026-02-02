@@ -24,7 +24,6 @@ import SelectActivityServices from "./pages/SelectActivityServices";
 import HostDashboard from "./pages/HostDashboard";
 import ActivitiesList from "./pages/ActivitiesList";
 import HospedajesList from "./pages/HospedajesList";
-<Route path="/alquileres" element={<HospedajesList />} />
 
 function App() {
   const navigate = useNavigate();
@@ -102,6 +101,8 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/empezar" element={<StartHosting />} />
             <Route path="/actividades" element={<ActivitiesList />} />
+            <Route path="/alquileres" element={<HospedajesList />} />
+            <Route path="/habitacion" element={<VistaHabitacion />} />
             <Route path="/alquileres" element={<HospedajesList />} />
 
             {/* ANFITRIÓN */}
