@@ -7,7 +7,7 @@ export default function VistaHabitacion() {
   const hoy = new Date().toISOString().split("T")[0];
   const precioPorNoche = 45000;
 
-  // Cálculo de noches
+
   const noches = useMemo(() => {
     if (!fechaEntrada || !fechaSalida) return 0;
 
@@ -26,7 +26,7 @@ export default function VistaHabitacion() {
     <div className="min-h-screen bg-[#f7f7f7] px-6 py-10">
       <div className="max-w-6xl mx-auto bg-white rounded-2xl shadow-sm p-8">
 
-        {/* TÍTULO */}
+       
         <h1 className="text-4xl font-bold mb-2">
           Habitación privada en cabaña
         </h1>
@@ -34,7 +34,7 @@ export default function VistaHabitacion() {
           Limón, Costa Rica · 2 huéspedes · 1 cama · 1 baño
         </p>
 
-        {/* GALERÍA */}
+    
         <div className="grid md:grid-cols-3 gap-6 mb-10">
           {[1, 2, 3].map((item) => (
             <div
