@@ -17,11 +17,11 @@ let pool = null;
 
 async function conectarBD() {
   try {
-    pool = await sql.connect(config); // ✅ aquí se asigna
-    console.log("✅ Conectado a SQL Server");
+    pool = await sql.connect(config); 
+    console.log("Conectado a SQL Server");
     return pool;
   } catch (err) {
-    console.error("❌ Error conectando:", err?.originalError || err);
+    console.error(" Error conectando:", err?.originalError || err);
     throw err;
   }
 }
